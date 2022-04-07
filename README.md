@@ -32,3 +32,9 @@ also create backup of config
 ````
 5. Minify config back: `jq -c . tmp.json > config.v2.json`
 6. start docker `service docker start`
+
+## meld as mergetool in git (Windows)
+```bash
+git config --global merge.tool meld
+git config --global mergetool.meld.cmd "C:\\Program\ Files\ \(x86\)\\Meld\\meld\\meld.exe \"$LOCAL\" \"$BASE\" \"$REMOTE\""
+```
