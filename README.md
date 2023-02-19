@@ -117,3 +117,17 @@ This will make it so the service is automatically started when you boot up the c
 `sudo systemctl start kill_kwin.service`
 
 This fix has actually worked for me for the better part of a month, so it should work for you guys too, any doubts, feel free to respond. And please forgive me for forgetting to update the post after finding the real fix.
+
+## openSUSE - How do bring back plymouth after Nvidia driver installation
+
+1. Make a `nvidia.conf` file with the following content:
+	`options nvidia_drm modeset=1`
+	Then copy this file to /etc/modprobe.d/
+2. Make another `nvidia.conf` file with the following content:
+	 ```
+	add_drivers+="nvidia nvidia_modeset nvidia_uvm nvidia_drm"
+	install_items+="/etc/modprobe.d/nvidia.conf" 
+	```
+	Copy this file to /etc/dracut.conf.d/
+3. update dracut:
+`sudo dracut -f`
